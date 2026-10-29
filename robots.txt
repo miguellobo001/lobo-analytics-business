@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://miguellobo001.github.io/lobo-analytics-business/sitemap.xml
