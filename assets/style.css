@@ -22,3 +22,40 @@
 @media(max-width:740px){:root{--edge:24px}.desktop-nav,.head-action{display:none}.menu-toggle{display:inline-flex}.head-inner{height:78px}.brand img{width:154px}.mobile-nav{position:absolute;top:78px;left:0;right:0;background:var(--navy);border-top:1px solid rgba(242,238,231,.13);padding:20px var(--edge) 28px;display:flex;flex-direction:column;gap:0;box-shadow:0 30px 30px rgba(0,0,0,.22)}.mobile-nav[hidden]{display:none!important}.mobile-nav a{padding:17px 0;border-bottom:1px solid rgba(242,238,231,.13);font-family:var(--serif);font-size:28px}.hero,.hero-inner{min-height:760px;min-height:100svh}.hero-inner{grid-template-columns:1fr;padding-top:140px;padding-bottom:105px;align-content:center}.hero h1{font-size:clamp(66px,15vw,105px);max-width:10ch}.hero-desc{font-size:15px;max-width:390px;margin:25px 0}.hero-right{display:none}.hero-footer{bottom:25px}.hero-footer span{font-size:8px}.section{padding:78px 0}.section-lead{grid-template-columns:1fr;margin-bottom:32px}.section-lead .side-note{justify-self:start}.section-lead h2{font-size:58px}.service-row{grid-template-columns:44px 1fr 35px;min-height:104px;padding:22px 1px;gap:11px}.service-index{font-size:25px}.service-name{font-size:clamp(27px,6.2vw,42px)}.service-go{width:32px;height:32px;font-size:17px}.process-grid{grid-template-columns:repeat(2,1fr);gap:35px 22px}.step-top{margin-bottom:24px}.process-step h3{font-size:30px}.about-inner{grid-template-columns:1fr}.about h2{font-size:64px}.art-panel{aspect-ratio:1.2;order:-1}.contact-inner{min-height:490px}.contact-orbit{display:none}.contact h2{font-size:clamp(56px,12vw,79px)}.foot-inner{padding:30px 0;min-height:0}.foot-meta{font-size:10px}.subhero{padding:147px 0 76px;min-height:0}.subhero h1{font-size:clamp(58px,12vw,86px);margin:35px 0 20px}.subhero .subdesc{font-size:15px}.detail-intro .detail-columns,.example-inner{grid-template-columns:1fr;gap:40px}.detail-intro h2{font-size:57px}.example .visual{min-height:290px}.detail-cta{padding:75px 0}.detail-cta-inner{flex-direction:column;align-items:flex-start}.detail-cta h2{font-size:59px}}
 @media(max-width:420px){.hero h1{font-size:63px}.section-lead h2,.detail-intro h2{font-size:49px}.process-grid{grid-template-columns:1fr}.step-top{margin-bottom:15px}.process-step p{max-width:none}.contact h2{font-size:54px}.contact-actions{flex-direction:column;align-items:flex-start}.foot-inner{align-items:flex-start;flex-direction:column}.foot-meta{text-align:left}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+
+
+
+/* Método Lobo — visual recuperado da versão original: símbolo e etapas em duas colunas */
+.method-classic{background:var(--navy);color:var(--ivory);padding-block:clamp(74px,9vw,118px)}
+.classic-layout{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px clamp(44px,6vw,85px);align-items:start}
+.classic-side{position:sticky;top:40px}
+.classic-eyebrow{display:flex;align-items:center;gap:14px;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--copper)}
+.classic-eyebrow::before{content:'';width:28px;height:1px;background:currentColor}
+.classic-h2{font-family:var(--serif);font-size:clamp(40px,4.2vw,55px);font-weight:400;letter-spacing:-.025em;line-height:1.07;margin-top:18px;max-width:11ch}
+.classic-mark{margin:44px 0 0;max-width:310px}
+.classic-mark svg{width:100%;height:auto;overflow:visible;display:block}
+.classic-mark polygon{transition:opacity .35s ease,fill .35s ease}
+.classic-mark[data-active="1"] polygon:not([data-s="1"]),
+.classic-mark[data-active="2"] polygon:not([data-s="2"]),
+.classic-mark[data-active="3"] polygon:not([data-s="3"]){opacity:.16}
+.classic-steps{list-style:none;margin:0;padding:0;border-top:1px solid rgba(242,238,231,.18)}
+.classic-step{display:grid;grid-template-columns:58px minmax(0,1fr);column-gap:22px;padding:25px 0 27px;border-bottom:1px solid rgba(242,238,231,.18);outline:none;cursor:pointer}
+.classic-step:focus-visible{outline:2px solid var(--copper);outline-offset:3px}
+.classic-number{font-size:14px;letter-spacing:.14em;color:var(--copper);padding-top:11px}
+.classic-step h3{font-family:var(--serif);font-weight:400;font-size:clamp(32px,3.1vw,43px);line-height:1.04;letter-spacing:-.02em}
+.classic-role{display:block;margin-top:8px;font-size:11px;font-weight:700;letter-spacing:.19em;text-transform:uppercase;color:rgba(242,238,231,.53)}
+.classic-step>p{grid-column:2;margin:14px 0 0;color:rgba(242,238,231,.73);font-size:14px;line-height:1.65;max-width:55ch}
+.classic-out{grid-column:2;display:flex;gap:12px;align-items:baseline;margin-top:14px;font-size:13px;line-height:1.55;color:var(--ivory)}
+.classic-out small{font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:var(--copper);font-weight:700;white-space:nowrap}
+.classic-step.is-on h3{color:var(--ivory)}
+.classic-step:not(.is-on){transition:opacity .2s}
+.classic-note{margin-top:41px;padding:21px 0 0;border-top:1px solid rgba(242,238,231,.18);font-size:12px;line-height:1.7;color:rgba(242,238,231,.7)}
+.classic-note span{color:var(--copper);font-weight:700;font-size:10px;letter-spacing:.13em;margin-right:10px}
+.classic-note a{color:var(--copper);text-decoration:underline;text-underline-offset:4px;white-space:normal;margin-left:5px}
+@media(max-width:860px){.classic-layout{grid-template-columns:1fr;gap:28px}.classic-side{position:static}.classic-h2{max-width:16ch}.classic-mark{margin-top:27px;max-width:190px}.classic-step{grid-template-columns:48px minmax(0,1fr)}.classic-step>p{margin-top:10px}}
+@media(max-width:560px){.method-classic{padding-block:70px}.classic-h2{font-size:44px}.classic-mark{max-width:135px;margin-top:22px}.classic-step{gap:14px;padding:21px 0}.classic-step h3{font-size:36px}.classic-step>p{font-size:13px}.classic-out{display:block}.classic-out small{display:block;margin-bottom:3px}.classic-note{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.classic-mark polygon{transition:none}}
+
+/* Ícones vetoriais estáveis entre navegadores; não dependem de emoji/fontes. */
+.ui-icon{display:inline-block;width:1em;height:1em;vertical-align:-.12em;flex:0 0 auto}.ui-arrow{stroke:currentColor}.ui-down{width:.9em;height:.9em}.ui-menu{width:18px;height:18px}.arrow:has(.ui-icon){display:inline-flex;align-items:center}.service-go .ui-icon{width:18px;height:18px}
