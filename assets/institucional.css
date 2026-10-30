@@ -230,3 +230,86 @@ a:focus-visible,button:focus-visible,[tabindex="0"]:focus-visible{outline:3px so
  .mobile-bar span{height:100%;display:block}
  .mobile-experiment-question{font-size:13px!important;line-height:1.6!important;margin:0!important;color:#405760}
 }
+
+/* V4 — refinamento editorial dos estudos e demonstrações de decisão.
+   Complementa o CSS original. Não altera o Método Lobo. */
+:root{--lobo-rule:rgba(16,38,49,.19);--lobo-muted:#405760}
+.case-study-v4{align-items:start}
+.case-study-v4 .case-heading h2{max-width:16ch;overflow-wrap:normal}
+.case-study-v4 .case-number{max-width:12ch;overflow-wrap:normal}
+.case-study-v4 .case-number span{max-width:30ch}
+.case-narrative{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 28px;align-content:start}
+.case-brief{min-width:0;padding-top:15px;border-top:1px solid var(--lobo-rule)}
+.case-brief:nth-child(3){grid-column:1 / -1}
+.case-narrative h3{font:700 11px/1.4 var(--sans,system-ui,sans-serif);letter-spacing:.08em;text-transform:uppercase;color:#765435;margin:0 0 10px}
+.case-narrative p{font-size:clamp(14px,1.1vw,15px);line-height:1.65;color:var(--lobo-muted);margin:0;max-width:64ch}
+.case-study-v4:nth-of-type(even) .case-heading{border-left:2px solid #b99569;padding-left:clamp(16px,2vw,24px)}
+.service-detail-copy .project-service-specific{font-size:14px;line-height:1.72;color:#405760;margin:18px 0 0}
+.project-approach{margin-top:27px;padding:21px 0 0;border-top:1px solid var(--lobo-rule)}
+.project-approach-label{font-size:11px!important;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#765435!important;margin:0 0 16px!important}
+.project-phases{list-style:none;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;margin:0;padding:0;counter-reset:lobo-phase}
+.project-phases li{counter-increment:lobo-phase;position:relative;min-width:0;padding:25px 10px 10px;border-top:2px solid #98a8a3;font:600 11px/1.35 var(--sans,system-ui,sans-serif);color:#102631;overflow-wrap:break-word}
+.project-phases li::before{content:"0" counter(lobo-phase);position:absolute;top:5px;left:10px;font-size:10px;font-weight:600;color:#556b6c}
+.project-phases li:first-child{padding-left:0}
+.project-phases li:first-child::before{left:0}
+.project-approach-note{margin:10px 0 0!important;font-size:12px!important;line-height:1.55!important;color:#53676c!important}
+.example .example-copy h2{max-width:20ch}
+.example .example-copy > p:not(.tag){line-height:1.7}
+.example .example-inner>.demo-reasoning{grid-column:1 / -1;min-width:0}
+.demo-reasoning{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:25px;border-top:1px solid var(--lobo-rule);padding-top:22px}
+.demo-reasoning-item{min-width:0;padding:0 20px;border-left:1px solid var(--lobo-rule)}
+.demo-reasoning-item:first-child{padding-left:0;border-left:0}
+.demo-reasoning-item h3{font:700 10px/1.5 var(--sans,system-ui,sans-serif);letter-spacing:.1em;text-transform:uppercase;color:#765435;margin:0 0 10px}
+.demo-reasoning-item p{font:400 13px/1.65 var(--sans,system-ui,sans-serif);color:#334b53;margin:0}
+.investigation-figure{background:#f7f5f0;padding:clamp(13px,2.2vw,25px);border:1px solid #d8dfda}
+.investigation-figure figcaption{margin-top:16px}
+.visual-overline{font:700 11px/1.5 var(--sans,system-ui,sans-serif);text-transform:uppercase;letter-spacing:.07em;color:#405760;margin:0 0 17px}
+.bi-ledger,.retention-demo{min-width:0;color:#102631;width:100%}
+.bi-decision-table,.retention-table{width:100%;border-collapse:collapse;table-layout:fixed;font:400 12px/1.4 var(--sans,system-ui,sans-serif);font-variant-numeric:tabular-nums;color:#102631}
+.bi-decision-table th,.bi-decision-table td,.retention-table th,.retention-table td{padding:10px 8px;border-bottom:1px solid #d1d9d3;text-align:right;vertical-align:middle}
+.bi-decision-table th:first-child,.retention-table th:first-child{text-align:left;width:57%}
+.retention-table th:first-child{width:43%}
+.bi-decision-table thead th,.retention-table thead th{font-size:11px;color:#435960;font-weight:600}
+.bi-decision-table tbody th,.retention-table tbody th{font-weight:500}
+.bi-decision-table .bi-net{background:rgba(16,38,49,.05);font-weight:700}
+.bi-decision-table .bi-rate{background:rgba(185,149,105,.13);font-weight:700}
+.bi-bars,.retention-bars{padding:15px 0 0;display:grid;gap:12px}
+.bi-bars>div,.retention-bars>div{display:grid;grid-template-columns:75px minmax(0,1fr) 48px;gap:9px;align-items:center;font:600 11px/1.4 var(--sans,system-ui,sans-serif)}
+.retention-bars>div{grid-template-columns:93px minmax(0,1fr) 43px}
+.bi-bar-track,.retention-track{height:14px;background:#dce3df;min-width:0}
+.bi-bar-track i,.retention-track i{display:block;height:100%;background:#102631}
+.bi-bars>div:nth-child(2) i,.retention-bars>div:nth-child(2) i{background:#b99569}
+.bi-bars b,.retention-bars b{font-variant-numeric:tabular-nums;font-weight:600;text-align:right}
+.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+/* Breadcrumbs longos têm quebra natural, sem truncar o nome do serviço. */
+.crumb{display:flex;gap:8px;flex-wrap:wrap;align-items:center;line-height:1.5}
+.crumb [aria-current="page"]{font-weight:600}
+@media(max-width:1000px){
+ .demo-reasoning{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:22px}
+ .demo-reasoning-item:nth-child(3){border-left:0;padding-left:0}
+ .case-narrative{grid-template-columns:1fr}
+ .case-brief:nth-child(3){grid-column:auto}
+}
+@media(max-width:740px){
+ .case-study-v4 .case-heading h2{max-width:18ch}
+ .demo-reasoning{margin-top:10px;padding-top:19px}
+ .project-phases{grid-template-columns:repeat(5,minmax(0,1fr))}
+}
+@media(max-width:530px){
+ .demo-reasoning{grid-template-columns:1fr;gap:16px}
+ .demo-reasoning-item,.demo-reasoning-item:nth-child(3){padding:0 0 0 13px;border-left:2px solid #b99569}
+ .demo-reasoning-item:first-child{padding-left:13px;border-left:2px solid #b99569}
+ .project-phases{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:12px}
+ .project-phases li{padding:24px 7px 7px;overflow-wrap:anywhere}
+ .project-phases li:first-child{padding-left:7px}
+ .project-phases li:first-child::before{left:10px}
+ .investigation-figure{padding:13px 10px}
+ .bi-decision-table,.retention-table{font-size:11px}
+ .bi-decision-table th,.bi-decision-table td,.retention-table th,.retention-table td{padding:10px 3px}
+ .retention-table th:first-child{width:38%}
+ .bi-bars>div{grid-template-columns:43px minmax(0,1fr) 40px}
+ .retention-bars>div{grid-template-columns:83px minmax(0,1fr) 34px}
+}
+
+/* Evita quebra inadequada do indicador mais longo em celulares. */
+@media(max-width:530px){.case-study-v4:nth-of-type(2) .case-number{font-size:clamp(33px,8.3vw,44px);max-width:100%;white-space:nowrap}}
