@@ -8,16 +8,8 @@ if(toggle && nav){
     toggle.setAttribute('aria-expanded',String(open));
     document.body.classList.toggle('menu-open',open);
   });
-  window.matchMedia('(min-width:861px)').addEventListener('change',event=>{if(event.matches)close();});
-  toggle.closest('header').addEventListener('keydown',event=>{
-    if(event.key!=='Tab' || nav.hidden)return;
-    const links=[toggle,...nav.querySelectorAll('a')];
-    const first=links[0],last=links[links.length-1];
-    if(event.shiftKey && document.activeElement===first){event.preventDefault();last.focus();}
-    if(!event.shiftKey && document.activeElement===last){event.preventDefault();first.focus();}
-  });
   nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',close));
-  window.addEventListener('keydown',event=>{if(event.key==='Escape' && !nav.hidden){close();toggle.focus();}});
+  window.addEventListener('keydown',event=>{if(event.key==='Escape')close();});
 }
 
 // Ligação original entre cada etapa e uma das três formas da marca.
