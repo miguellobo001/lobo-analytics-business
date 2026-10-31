@@ -1,58 +1,67 @@
-# Lobo Analytics & Business — auditoria e validação Master V4
+# Master V5 — relatório de implementação e validação
 
-## 1. Alcance efetivo
+31/10/2026. Trabalho local em `feat/lobo-master-v5`, baseado em `62d61cdec5802bcabc8070ec84a0625433d76593`. Sem publicação.
 
-| Verificação | Resultado |
-|---|---|
-| Acesso ao GitHub e site público | **Bloqueado por falha de acesso**: não foi possível obter HTML, API de branch ou Pages |
-| Confirmação `main` × branch de deploy × versão publicada | **Não executada**: não há comprovação da origem de publicação |
-| Base local de trabalho | Pacote `lobo-analytics-business-v6.zip`, disponível na conversa |
-| Arquivos originais de marca, CSS-base e JS | **Indisponíveis** no pacote; foram referenciados, não substituídos |
-| Alterações em produção | **Nenhuma**: nenhum commit, push, alteração de configuração ou deploy |
+## Auditoria da base
 
-## 2. Auditoria editorial e implementação
+A árvore estava limpa em `main`. `origin` aponta para `https://github.com/miguellobo001/lobo-analytics-business.git`; `git ls-remote` confirmou o mesmo commit em `main` remota. O HTML obtido de `https://miguellobo001.github.io/lobo-analytics-business/` era byte a byte idêntico à Home local antes da edição. A API pública `/repos/miguellobo001/lobo-analytics-business/pages` retornou 404: a configuração de origem do Pages não pôde ser confirmada. Igualdade da Home não comprova a origem completa do deploy.
 
-**Observado na V6 local:** a página de experiências tinha quatro blocos de texto por estudo e não separava claramente fatos históricos de interpretação empresarial. As páginas de serviços já incluíam exemplos, porém alguns dados do BI eram índices sem unidade financeira ou fórmula, e ciência de dados usava uma comparação abstrata A/B. O processo comercial era tratado de maneira genérica e os breadcrumbs de serviços terminavam em números.
+Foram lidos os seis HTML, os dois CSS e o JavaScript. A versão anterior foi renderizada com os assets reais no Chrome, em 390 e 1440 px, antes das mudanças. Os problemas principais eram o Hero dependente do símbolo e a repetição de processo, contexto e ressalvas nos serviços e nos estudos. Os testes antigos afirmavam que os assets originais estavam ausentes; foram atualizados para refletir o checkout completo.
 
-**Implementado na V4:** reorganização dos três estudos, distinção explícita entre investigação conhecida e leitura de negócio, orientação de contratação, fases de trabalho condicionadas ao escopo, exemplos de negócios com cálculos consistentes, FAQ implícita sobre causa/correlação e breadcrumbs descritivos. Método Lobo, identidade cromática, URLs de serviço e slogans não foram substituídos.
+## Direção de arte e edição
 
-O texto não afirma conhecimento sobre dados históricos não fornecidos: as perguntas e leituras de negócio são interpretações gerais, não procedimentos comprovadamente adotados nos projetos. Resultados passados são atribuídos à carreira da liderança.
+Arquitetura abstrata, luz lateral, azul-noturno e cobre como imagem editorial; serifada EB Garamond e sans DM Sans preservadas. Logotipos e imagens oficiais não foram alterados. A geometria exata do Método Lobo e sua ligação com as três etapas permanecem. Nenhum cliente, pessoa, depoimento ou resultado novo foi criado.
 
-## 3. Testes realmente executados
+A Home mantém apenas Hero, soluções, método, instituição/resultados, contato e rodapé. As descrições dos serviços continuam visíveis no celular. A liderança aparece pelo nome, campo de atuação e LinkedIn; não foi encontrado retrato real no acervo, e não foi gerado substituto.
 
-- **245 asserções estáticas aprovadas** em seis páginas HTML com `python tests/test_static.py`: H1, idioma, landmarks, links locais e âncoras, metadados, CTAs contextualizados, casos, orientações de serviço, dados fictícios, fórmula da margem, cautela sobre causalidade, sitemap, dependências originais não sobrescritas, CSS complementar analisável.
-- **Método Lobo:** a seção `<section class="method-classic">…</section>` permaneceu **idêntica, byte a byte, ao pacote V6 local**. Isto não equivale a validar a interação com o `assets/main.js` real, indisponível.
-- **Chromium em `page.set_content`: 30 combinações de seis páginas × cinco larguras** (360, 390, 768, 1024 e 1440 px), com **zero casos de overflow horizontal detectados**, H1 presente e screenshots guardados para seis combinações. Usou uma **folha de estilos-base SIMULADA**, somada ao CSS complementar real. As prévias não são da produção e **não demonstram o design oficial ou o funcionamento do menu**. O navegador bloqueou acesso a URLs HTTP locais e a arquivos `file://`; por isso foi usado `set_content`.
-- **Aplicador seguro de branch:** três cenários simulados em repositório Git temporário: recusou branch `main`, recusou um arquivo-base divergente e aceitou uma branch de desenvolvimento limpa com os hashes esperados. Nenhuma alteração remota.
-- **Amostra BI:** Jan (100 − 10 − 60 = 30; 30/90 = 33,3%); Abr (140 − 22 − 84 = 34; 34/118 = 28,8%). Valores fictícios em R$ mil, **margem de contribuição**, não lucro líquido.
-- **Amostra ciência de dados:** 12/40 = 30% e 16/160 = 10%. Dados fictícios; associação não prova causalidade.
+Comparação editorial das duas hierarquias de Hero: “Negócio primeiro. Ferramentas depois.” comunica diretamente o critério de atuação e ocupa menos espaço; o slogan oficial funciona como assinatura institucional. A alternativa com slogan como H1 foi renderizada na mesma composição e registrada em `evidencias/master-v5/hero-alternativa-slogan-1440.png`. A escolha é uma avaliação de direção de arte, não um teste de conversão com usuários.
 
-## 4. Testes pendentes — não declarar como aprovados
+### Redução de conteúdo
 
-- Comparação direta da versão publicada e do código-fonte remoto, branches, source path/Pages e cache.
-- Renderização com `assets/style.css`, fontes, logos e ícones oficiais reais.
-- Menu responsivo e comportamento interativo do Método Lobo com `assets/main.js` original.
-- Auditoria completa de leitores de tela, navegação teclado real, WCAG 2.2 AA e contraste de todos os componentes do CSS-base ausente.
-- Teste real do WhatsApp, entrega de e-mails e navegação externa (as URLs foram verificadas, não abertas).
-- Core Web Vitals, Lighthouse e performance do site publicado; não foi inventada nenhuma pontuação.
-- Validação legal e de confidencialidade de dados da carreira; domínio, e-mail e informações empresariais futuras.
+Contagem de palavras no texto de `main`, via BeautifulSoup `get_text(' ', strip=True).split()`, comparada ao checkout inicial. Inclui rótulos das visualizações e suas alternativas acessíveis; não inclui header e footer.
 
-## 5. Avaliação de aceitação por perspectiva
+| Página | Antes | Depois* | Redução aproximada |
+| --- | ---: | ---: | ---: |
+| Home | 424 | 275 | 35% |
+| Experiências | 468 | 231 | 51% |
+| Diagnóstico | 447 | 287 | 36% |
+| BI | 407 | 232 | 43% |
+| Automação e IA | 382 | 216 | 43% |
+| Ciência de dados | 390 | 214 | 45% |
 
-| Perspectiva | Melhorias observáveis no pacote | Objeção que permanece |
-|---|---|---|
-| Diretor financeiro | BI com receita, descontos, custos e margem calculada; casos de eficiência com autoria diferenciada | Verificação externa e autorização dos números históricos ainda necessárias |
-| Diretor de operações | Processo fictício antes/depois com revisão humana, regras e exceções | Não existe demonstração de sistema executado em produção pela Lobo |
-| Diretor de tecnologia | Processo descrito com escopo, validação, testes de integridade e restrições de deploy | Código-base e arquitetura original do site não puderam ser auditados |
-| Empresário | Orientação de quando contratar cada serviço, contato contextualizado e cases mais transparentes | Histórico comercial da própria Lobo ainda é inicial; falta prova contratual própria |
-| Diretor de criação | Layout editorial aditivo, sem novo template, alteração pontual no conteúdo visual, cores preservadas | Sem assets oficiais, não é possível homologar o acabamento visual do site publicado |
+*Pequenas variações na contagem resultam de espaços entre elementos após a formatação do HTML. O arquivo `editorial.json` registra a contagem final com o mesmo critério.
 
-## 6. Informação adicional útil para aprofundar os estudos
+### Demonstrações
 
-**Custos operacionais:** tipos de despesas e recortes realmente analisados, qual recomendação foi aceita, natureza do ganho (realizado ou projetado), período de mensuração.
+- Diagnóstico: matriz impacto/esforço em SVG; alternativa mobile com os mesmos quadrantes e iniciativas.
+- BI: receita, descontos, custos e contribuição; 30/90 = 33,3%, 34/118 = 28,8%. Não equivale a lucro líquido. A queda da taxa não atribui causalidade.
+- Automação: antes/depois de reembolsos, captura e integração, regras e revisão humana de exceções.
+- Ciência de dados: 40 clientes/12 cancelamentos = 30%; 160/16 = 10%; 200 clientes e 28 cancelamentos. Associação observacional sem promessa preditiva.
 
-**Descontos comerciais:** qual era a pergunta analisada, qual foi a responsabilidade específica de Miguel, como a economia foi medida e quem pode autorizar o uso público.
+## Imagem e procedência
 
-**Qualidade de preços:** qual era a origem geral das inconsistências (sem detalhes confidenciais), como a queda de chamados foi mensurada e qual o período de comparação.
+`assets/hero-arquitetura.webp`: 1024 × 1280, 86.302 bytes. Gerada com a ferramenta integrada Imagegen, sem fotografia externa, pessoas, marca redesenhada ou representação de instalações reais. `assets/hero-social.jpg`: derivação de 1200 × 630 para Open Graph. O PNG original permanece no diretório de imagens geradas do Codex. A conversão local apenas ajusta dimensões e codificação.
 
-Não completar essas lacunas com suposições. O pacote já está pronto para avaliação editorial e merge manual condicionado à conferência da branch correta.
+Prompt final da geração:
+
+> Use case: stylized-concept. Asset type: original editorial website hero for Lobo Analytics & Business, no text. Create a sophisticated architectural still life, portrait 4:5 composition: monumental minimalist dark midnight blue (#102631) planar walls and broad ascending platforms, a single matte brushed copper (#B99569) vertical plane catching soft natural side light. Warm ivory light through a tall opening. Strong spatial depth, tactile fine plaster and metal, restrained cinematic shadows, quiet premium B2B editorial art direction. Abstract architecture symbolizing direction, structure and progress. Cropped close, no horizon, no decorative objects. Not an actual company office. No people, no logos, no triangles resembling a logo, no lettering, no charts, no holograms. Entire image filled with rich architectural composition, balanced light and shadow.
+
+A imagem do Hero tem dimensões explícitas, `fetchpriority="high"` e permanece visível em mobile. Não foram acrescentadas outras fotografias abaixo da primeira tela. Logo e símbolo são os ativos originais.
+
+Referências: consultado o conteúdo público da [Manyone](https://manyone.com/) para organização de serviços e trabalhos. As tentativas de acesso a Boi Design e Prophet pela ferramenta web falharam; não se afirma auditoria visual desses sites. Nenhuma imagem de referência foi incorporada.
+
+## Validação executada
+
+- `python tests/test_static.py`: 302 verificações aprovadas sobre seis páginas, links/fragmentos locais, recursos existentes, segurança de links externos, metadados, canonical, sitemap, dimensões de imagem, integridade da geometria, entregáveis e aritmética dos exemplos.
+- `python tests/test_browser.py`: Chrome headless real, HTTP local e arquivos reais. Seis páginas × 360, 390, 768, 1024 e 1440 px. Verifica overflow, imagens, H1, menu e Escape, ciclo de foco no menu, ligação por foco/Enter com o símbolo e skip link; também compara as larguras das escalas nas barras.
+- Capturas completas de todas as páginas em 390 e 1440 px, com alternativa do Hero. Revisão visual levou a ajustes de quebras do Hero, margens do rodapé e rótulo de tabela mobile.
+- CSS complementar consolidado, removendo as camadas históricas redundantes. HTML formatado para revisão. Nenhuma biblioteca adicionada ao site; dependências Python são apenas para testes.
+- `git diff --check`: executado para verificar espaços e conflitos textuais.
+
+As evidências novas estão em `evidencias/master-v5/`. As capturas antigas de CSS simulado permanecem identificadas como históricas e não representam esta versão.
+
+## Limites e pendências
+
+Não foram executados Lighthouse, testes com leitores de tela ou medições de Core Web Vitals em produção. Não se declara conformidade WCAG integral nem pontuação de desempenho. As fontes continuam usando o Google Fonts já existente. Links de WhatsApp/LinkedIn/e-mail foram preservados; testes não enviam mensagens nem validam a titularidade das contas.
+
+Antes de publicar, revisar o conteúdo e confirmar as autorizações de divulgação dos três resultados, preservando a natureza coletiva do estudo de descontos. Confirmar também branch/pasta ou workflow efetivo do GitHub Pages. O retrato real e profissional de Miguel Lobo é o único ativo fotográfico opcional pendente. Não há aprovação presumida de publicação.

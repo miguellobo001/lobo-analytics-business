@@ -1,79 +1,66 @@
-"""Offline static checks. Run from the distribution root: python tests/test_static.py
-Does not prove deployed version, visual fidelity with original assets or WCAG AA.
+"""Verifica estrutura, links/ativos reais, identidade, exemplos e SEO sem rede.
+Executar: python tests/test_static.py (beautifulsoup4, tinycss2, pillow).
 """
 from pathlib import Path
-from urllib.parse import urlsplit,parse_qs,unquote
+from urllib.parse import urlsplit,unquote
 from bs4 import BeautifulSoup
-import hashlib, json, re, xml.etree.ElementTree as ET
+from PIL import Image
+import json,hashlib,xml.etree.ElementTree as ET
 import tinycss2
 R=Path(__file__).resolve().parents[1]
-html_files=[R/'index.html',R/'experiencia-e-resultados.html',*sorted((R/'servicos').glob('*.html'))]
-ok=[]
-def check(test,msg):
- assert test,msg
- ok.append(msg)
-check(len(html_files)==6,'six expected HTML pages')
-check(set(p.name for p in html_files if p.parent.name=='servicos')=={'diagnostico.html','analise-de-dados.html','automacao-e-ia.html','ciencia-de-dados.html'},'four service URLs retained')
-for path in html_files:
- s=BeautifulSoup(path.read_text(), 'html.parser')
- check(s.html.get('lang')=='pt-BR',f'{path.name}: pt-BR lang')
- check(len(s.select('h1'))==1,f'{path.name}: one H1')
- check(len(s.select('main#conteudo'))==1,f'{path.name}: main landmark')
- check(len(s.select('.skip-link[href="#conteudo"]'))==1,f'{path.name}: skip link')
- check(len(s.select('head > title'))==1 and bool(s.title.get_text(strip=True)),f'{path.name}: title')
- check(len(s.select('meta[name="description"]'))==1,f'{path.name}: description')
- check(len(s.select('link[rel="canonical"]'))==1,f'{path.name}: canonical')
- check(len(s.select('meta[property="og:image"]'))==1,f'{path.name}: OG image declared (asset availability not tested)')
- check(len(s.select('nav[data-mobile-nav]'))==1,f'{path.name}: legacy menu markup preserved')
- check(len(s.select('script[src$="main.js"]'))==1,f'{path.name}: original JS reference preserved')
- check(len(s.select('a[href^="https://wa.me/"]'))>0,f'{path.name}: WhatsApp contact exists')
- for a in s.select('a[href]'):
-  u=a['href']
-  if urlsplit(u).scheme or u.startswith('#'):continue
-  resolved=(path.parent/urlsplit(u).path).resolve()
-  if resolved.suffix.lower() in ('.html','.xml','.txt'):
-   check(resolved.exists(),f'{path.name}: local link target exists: {u}')
-  if '#' in u and u.split('#')[1] and resolved.exists() and resolved.suffix=='.html':
-   dest=BeautifulSoup(resolved.read_text(),'html.parser')
-   check(dest.find(id=u.split('#')[1]) is not None, f'{path.name}: fragment target {u} exists')
- if path.parent.name=='servicos':
-  check(len(s.select('h3'))>=4,f'{path.name}: explanatory headings present')
-  check('Quando este serviço faz sentido?' in s.get_text(' ',strip=True),f'{path.name}: fit guidance')
-  check(len(s.select('.project-phases li'))==5,f'{path.name}: project phases')
-  check(len(s.select('.demo-reasoning-item'))==4,f'{path.name}: question data observation decision')
-  check(len(s.select('figure.visual figcaption'))==1,f'{path.name}: illustrative disclosure')
-  check(s.select_one('.crumb [aria-current="page"]') is not None,f'{path.name}: descriptive breadcrumb')
-  links=[urlsplit(x['href']) for x in s.select('section.subhero a[href^="https://wa.me/"],section.detail-cta a[href^="https://wa.me/"]')]
-  check(len(links)==2 and links[0].query==links[1].query,f'{path.name}: contextual CTA')
-check(len({BeautifulSoup(p.read_text(),'html.parser').title.text for p in html_files})==6,'unique title tags')
-check('Estratégia que orienta.' in (R/'index.html').read_text() and 'Tecnologia que transforma.' in (R/'index.html').read_text(),'official slogan')
-from zipfile import ZipFile
-previous=Path('/mnt/data/lobo-analytics-business-v6.zip')
-if previous.exists():
- def method(t):return re.search(r'<section class="method-classic".*?</section>',t,re.S).group(0)
- with ZipFile(previous) as z:previous_home=z.read('index.html').decode('utf8')
- check(method(previous_home)==method((R/'index.html').read_text()),'Method Lobo block byte for byte unchanged from V6')
-experience=BeautifulSoup((R/'experiencia-e-resultados.html').read_text(),'html.parser')
-check(len(experience.select('article.case-study'))==3,'three career cases')
-check(all(len(case.select('.case-brief'))==5 for case in experience.select('article.case-study')),'context, investigation, business reading, result, ownership')
-check('não são contratos da lobo' in experience.get_text(' ',strip=True).lower(),'results clearly not customers')
-check('projeto coletivo' in experience.get_text(' ',strip=True),'collective role stated')
-check('anteriores à criação' in experience.get_text(' ',strip=True),'prior employment disclaimer')
-bi=BeautifulSoup((R/'servicos/analise-de-dados.html').read_text(),'html.parser')
-rows={x.th.text.strip():[c.text.strip() for c in x.select('td')] for x in bi.select('.bi-decision-table tbody tr')}
-check(rows['Margem de contribuição']==['30','34'],'BI contribution margin Jan, Apr')
-check(rows['Margem sobre receita líquida']==['33,3%','28,8%'],'BI percentages consistent')
-assert abs(30/(100-10)*100-33.3)<.05 and abs(34/(140-22)*100-28.8)<.05
-check(True,'BI sample financial arithmetic')
-sci=BeautifulSoup((R/'servicos/ciencia-de-dados.html').read_text(),'html.parser')
-rows=[[td.get_text(strip=True) for td in tr.select('td')] for tr in sci.select('.retention-table tbody tr')]
-check(rows==[['40','12','30%'],['160','16','10%']],'science sample rates and sample sizes')
-check('não demonstra causalidade' in sci.get_text(' ',strip=True),'correlation caveat')
-css=(R/'assets/institucional.css').read_text();parse=tinycss2.parse_stylesheet(css,skip_comments=True,skip_whitespace=True)
-check(not [x for x in parse if x.type=='error'],'supplemental CSS parses')
+files=[R/'index.html',R/'experiencia-e-resultados.html',*sorted((R/'servicos').glob('*.html'))]
+checks=[]
+def check(test,label):
+ assert test,label
+ checks.append(label)
+docs={p:BeautifulSoup(p.read_text(),'html.parser') for p in files}
+check(len(files)==6,'six pages')
+for p,s in docs.items():
+ check(s.html['lang']=='pt-BR',f'{p.name}: language')
+ check(len(s.select('h1'))==1 and len(s.select('main#conteudo'))==1,f'{p.name}: landmarks')
+ check(s.select_one('.skip-link[href="#conteudo"]'),f'{p.name}: skip link')
+ check(s.title and s.select_one('meta[name="description"]'),f'{p.name}: metadata')
+ canonical=s.select_one('link[rel="canonical"]')['href']
+ expected='https://miguellobo001.github.io/lobo-analytics-business/'+('' if p.name=='index.html' else str(p.relative_to(R)))
+ check(canonical==expected,f'{p.name}: canonical')
+ check(s.select_one('meta[property="og:url"]')['content']==canonical,f'{p.name}: OG URL')
+ check(s.select_one('[data-menu-toggle]')['aria-controls']==s.select_one('[data-mobile-nav]')['id'],f'{p.name}: menu control')
+ for el in s.select('a[href],img[src],script[src],link[href]'):
+  url=el.get('href') or el.get('src');u=urlsplit(url)
+  if el.get('target')=='_blank':check('noopener' in el.get('rel',[]),f'{p.name}: external security')
+  if u.scheme or u.netloc:continue
+  dest=(p.parent/unquote(u.path)).resolve() if u.path else p
+  check(dest.exists(),f'{p.name}: resource {url}')
+  if u.fragment and dest.suffix=='.html':check(BeautifulSoup(dest.read_text(),'html.parser').find(id=unquote(u.fragment)),f'{p.name}: fragment {url}')
+ for im in s.select('img'):
+  check(im.has_attr('alt') and im.has_attr('width') and im.has_attr('height'),f'{p.name}: image dimensions/alt')
+ check(s.select_one('a[href^="https://wa.me/"]'),f'{p.name}: contact')
+ if p.parent.name=='servicos':
+  check(len(s.select('.deliverable'))==3,f'{p.name}: three deliverables')
+  check(s.select_one('figure.visual figcaption') and 'fictíci' in s.get_text().lower(),f'{p.name}: illustration disclosure')
+  check(not s.select('.project-phases,.demo-reasoning'),f'{p.name}: repetitive process removed')
+  links=s.select('section.subhero a[href^="https://wa.me/"],section.detail-cta a[href^="https://wa.me/"]')
+  check(len(links)==2 and links[0]['href']==links[1]['href'],f'{p.name}: contextual contact consistency')
+check(len({s.title.text for s in docs.values()})==6,'unique titles')
+home=docs[R/'index.html']
+check('Estratégia que orienta. Tecnologia que transforma.' in home.get_text(' ',strip=True),'official slogan')
+check([x['points'] for x in home.select('#methodMark polygon')]==['666,250 0,848 666,848','703,268 704,737 1052,588','915,0 709,206 915,398'],'official method geometry')
+check(len(home.select('.service-row'))==4 and len(home.select('.classic-step'))==3,'services and method retained')
+exp=docs[R/'experiencia-e-resultados.html']
+check(len(exp.select('.case-study'))==3 and all(len(c.select('.case-brief'))==3 for c in exp.select('.case-study')),'three short case studies')
+check('anteriores à criação' in exp.get_text() and 'coletivo' in exp.get_text(),'career and collective attribution')
+bi=docs[R/'servicos/analise-de-dados.html']
+rows={r.th.text.strip():[t.text.strip() for t in r.select('td')] for r in bi.select('.bi-decision-table tbody tr')}
+check(rows['Margem de contribuição']==['30','34'],'BI contribution')
+check(rows['Margem sobre receita líquida']==['33,3%','28,8%'],'BI rates')
+check(abs(30/90*100-33.3)<.05 and abs(34/118*100-28.8)<.05,'BI arithmetic')
+sci=docs[R/'servicos/ciencia-de-dados.html']
+check([[t.text.strip() for t in r.select('td')] for r in sci.select('.retention-table tbody tr')]==[['40','12','30%'],['160','16','10%']],'science data')
+check('não demonstra causalidade' in sci.get_text(),'science limitation')
+for p in (R/'assets').glob('*.css'):
+ check(not [n for n in tinycss2.parse_stylesheet(p.read_text(),skip_comments=True,skip_whitespace=True) if n.type=='error'],f'{p.name}: CSS syntax')
 urls=[x.text for x in ET.parse(R/'sitemap.xml').iter() if x.tag.endswith('loc')]
-check(len(urls)==len(set(urls))==6,'sitemap six unique pages')
-check('miguellobo001.github.io/lobo-analytics-business/' in (R/'robots.txt').read_text(),'robots references sitemap')
-for original in ['assets/style.css','assets/main.js','assets/logo-clara.png','assets/simbolo-claro.png','assets/favicon.png']:
- check(not (R/original).exists(),f'original asset deliberately not included: {original}')
-print('PASS',len(ok),'offline static assertions across',len(html_files),'pages')
+check(set(urls)=={s.select_one('link[rel="canonical"]')['href'] for s in docs.values()},'sitemap matches pages')
+with Image.open(R/'assets/hero-arquitetura.webp') as im:check(im.size==(1024,1280),'hero dimensions')
+check((R/'assets/hero-arquitetura.webp').stat().st_size<180000,'hero weight budget')
+print(f'PASS: {len(checks)} verificações estáticas em {len(files)} páginas.')

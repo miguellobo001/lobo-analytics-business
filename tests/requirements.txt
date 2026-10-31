@@ -1,0 +1,4 @@
+beautifulsoup4==4.15.0
+tinycss2==1.4.0
+playwright==1.60.0
+pillow==11.3.0

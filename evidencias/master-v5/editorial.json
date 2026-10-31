@@ -1,0 +1,38 @@
+[
+  {
+    "page": "index.html",
+    "before": 424,
+    "after": 275,
+    "reduction_percent": 35.1
+  },
+  {
+    "page": "experiencia-e-resultados.html",
+    "before": 468,
+    "after": 231,
+    "reduction_percent": 50.6
+  },
+  {
+    "page": "servicos/automacao-e-ia.html",
+    "before": 382,
+    "after": 216,
+    "reduction_percent": 43.5
+  },
+  {
+    "page": "servicos/diagnostico.html",
+    "before": 447,
+    "after": 287,
+    "reduction_percent": 35.8
+  },
+  {
+    "page": "servicos/analise-de-dados.html",
+    "before": 407,
+    "after": 232,
+    "reduction_percent": 43.0
+  },
+  {
+    "page": "servicos/ciencia-de-dados.html",
+    "before": 390,
+    "after": 214,
+    "reduction_percent": 45.1
+  }
+]

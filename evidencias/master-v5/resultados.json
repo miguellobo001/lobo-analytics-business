@@ -1,0 +1,247 @@
+{
+  "browser": "chrome",
+  "source": "HTTP local, HTML/CSS/JS e imagens reais",
+  "checks": [
+    {
+      "page": "index.html",
+      "viewport": 360,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": "block"
+    },
+    {
+      "page": "index.html",
+      "viewport": 390,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": "block"
+    },
+    {
+      "page": "index.html",
+      "viewport": 768,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": "block"
+    },
+    {
+      "page": "index.html",
+      "viewport": 1024,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": "block"
+    },
+    {
+      "page": "index.html",
+      "viewport": 1440,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": "block"
+    },
+    {
+      "page": "experiencia-e-resultados.html",
+      "viewport": 360,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": null
+    },
+    {
+      "page": "experiencia-e-resultados.html",
+      "viewport": 390,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": null
+    },
+    {
+      "page": "experiencia-e-resultados.html",
+      "viewport": 768,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": null
+    },
+    {
+      "page": "experiencia-e-resultados.html",
+      "viewport": 1024,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": null
+    },
+    {
+      "page": "experiencia-e-resultados.html",
+      "viewport": 1440,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": null
+    },
+    {
+      "page": "servicos/diagnostico.html",
+      "viewport": 360,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": null
+    },
+    {
+      "page": "servicos/diagnostico.html",
+      "viewport": 390,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": null
+    },
+    {
+      "page": "servicos/diagnostico.html",
+      "viewport": 768,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": null
+    },
+    {
+      "page": "servicos/diagnostico.html",
+      "viewport": 1024,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": null
+    },
+    {
+      "page": "servicos/diagnostico.html",
+      "viewport": 1440,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": null
+    },
+    {
+      "page": "servicos/analise-de-dados.html",
+      "viewport": 360,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": null
+    },
+    {
+      "page": "servicos/analise-de-dados.html",
+      "viewport": 390,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": null
+    },
+    {
+      "page": "servicos/analise-de-dados.html",
+      "viewport": 768,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": null
+    },
+    {
+      "page": "servicos/analise-de-dados.html",
+      "viewport": 1024,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": null
+    },
+    {
+      "page": "servicos/analise-de-dados.html",
+      "viewport": 1440,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": null
+    },
+    {
+      "page": "servicos/automacao-e-ia.html",
+      "viewport": 360,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": null
+    },
+    {
+      "page": "servicos/automacao-e-ia.html",
+      "viewport": 390,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": null
+    },
+    {
+      "page": "servicos/automacao-e-ia.html",
+      "viewport": 768,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": null
+    },
+    {
+      "page": "servicos/automacao-e-ia.html",
+      "viewport": 1024,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": null
+    },
+    {
+      "page": "servicos/automacao-e-ia.html",
+      "viewport": 1440,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": null
+    },
+    {
+      "page": "servicos/ciencia-de-dados.html",
+      "viewport": 360,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": null
+    },
+    {
+      "page": "servicos/ciencia-de-dados.html",
+      "viewport": 390,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": null
+    },
+    {
+      "page": "servicos/ciencia-de-dados.html",
+      "viewport": 768,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": null
+    },
+    {
+      "page": "servicos/ciencia-de-dados.html",
+      "viewport": 1024,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": null
+    },
+    {
+      "page": "servicos/ciencia-de-dados.html",
+      "viewport": 1440,
+      "overflow": false,
+      "brokenImages": [],
+      "h1": 1,
+      "hero": null
+    }
+  ],
+  "errors": []
+}
