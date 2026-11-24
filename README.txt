@@ -61,3 +61,5 @@ V4.0: sobreposição natural preservada; fade e deslocamento das imagens revers�
 V4.1: fade apenas na borda inferior do carrossel (28px desktop / 14px mobile). Nao reduz a opacidade de todas as imagens.
 
 LOBO v4.2 — imagem principal da home atualizada para composição editorial de relatório e painel, identidade visual preservada. Valores de carrossel aprovados: base 66/95, extra 40/65, degradê 2px. Hero desktop compacto.
+
+LOBO v4.3: título da home “Clareza para” com alternância decidir. / priorizar. / avançar. a cada 3,6 segundos. Segunda frase do título removida. CSS/JS em assets/style.css e assets/hero-rotator.js. Prefers-reduced-motion mantém “decidir.” estático. A v4.2 foi preservada em todas as demais páginas e efeitos.

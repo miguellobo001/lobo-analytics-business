@@ -307,3 +307,11 @@ body{color:var(--dark);background:var(--paper);}
 /* Ajustes visuais da home aprovados (hero mais compacto) */
 @media (min-width:1051px){.hero__intro{min-height:350px;padding-top:0;padding-bottom:15px;}}
 @media (max-width:730px){.hero__intro{padding-top:15px;}}
+
+/* LOBO v4.3 — título rotativo na home, sem deslocar os elementos ao alternar. */
+.hero__statement--dynamic { max-width:100%; }
+.hero__rotator { display:block; min-height:1.11em; overflow:hidden; color:var(--copper-text); }
+.hero__rotator-word { display:block; width:max-content; max-width:100%; transition:opacity .46s ease, transform .46s cubic-bezier(.22,1,.36,1); opacity:1; transform:translateY(0); }
+.hero__rotator-word.is-leaving { opacity:0; transform:translateY(-.24em); }
+.hero__rotator-word.is-entering { opacity:0; transform:translateY(.24em); }
+@media (prefers-reduced-motion:reduce) { .hero__rotator-word {transition:none!important;transform:none!important;} }
