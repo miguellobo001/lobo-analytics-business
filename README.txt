@@ -54,6 +54,10 @@ VERSÃO 3.7
 
 V3.8: carrossel inicial mais baixo e espaço azul reduzido; camadas preservadas.
 
+Lobo v3.9 — a própria seção azul-noturno cobre as imagens do carrossel. Sem pseudoelemento e sem script de cobertura. Ajustar .ribbon margin-bottom no final de assets/style.css para controlar a quantidade de sobreposição. Arquivo de entrada: index.html.
+
 V4.0: sobreposição natural preservada; fade e deslocamento das imagens reversíveis com scroll. Sem ::before e sem altura extra.
 
 V4.1: fade apenas na borda inferior do carrossel (28px desktop / 14px mobile). Nao reduz a opacidade de todas as imagens.
+
+LOBO v4.2 — imagem principal da home atualizada para composição editorial de relatório e painel, identidade visual preservada. Valores de carrossel aprovados: base 66/95, extra 40/65, degradê 2px. Hero desktop compacto.
