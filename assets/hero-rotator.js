@@ -1,4 +1,8 @@
-/* Lobo v4.3 — troca discreta do verbo do título da home, sem dependências. */
+/**
+ * Título da home — alternância entre três palavras a cada 3,6 segundos.
+ * Interrompe a animação quando a página não está visível ou quando o
+ * visitante prefere movimento reduzido.
+ */
 (() => {
   'use strict';
   const word = document.querySelector('[data-hero-word]');
@@ -6,7 +10,7 @@
   const terms = ['decidir.', 'priorizar.', 'avançar.'];
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
   let index = 0;
-  let timeout = null;
+  let intervalId = null;
   let pending = null;
   const showNext = () => {
     if (document.hidden || reduce.matches) return;
@@ -21,11 +25,11 @@
     }, 460);
   };
   const start = () => {
-    clearInterval(timeout);
-    if (!document.hidden && !reduce.matches) timeout = setInterval(showNext, 3600);
+    clearInterval(intervalId);
+    if (!document.hidden && !reduce.matches) intervalId = setInterval(showNext, 3600);
   };
   const reset = () => {
-    clearInterval(timeout);
+    clearInterval(intervalId);
     clearTimeout(pending);
     pending = null;
     index = 0;

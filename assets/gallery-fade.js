@@ -1,4 +1,8 @@
-/* LOBO v4.1 — transição de cobertura sutil, reversível e restrita à borda inferior. */
+/**
+ * Galeria da home — máscara progressiva na borda inferior.
+ * A seção seguinte cobre a galeria pelo próprio fluxo do layout.
+ * Valores aprovados: base 66/95 px, movimento adicional 40/65 px (mobile/desktop).
+ */
 (() => {
   'use strict';
   const gallery = document.querySelector('.ribbon');
@@ -14,8 +18,7 @@
       return;
     }
     const mobile = innerWidth <= 730;
-    // Sobreposição REAL da seção azul: 95px desktop, 46px mobile.
-    // O movimento acrescenta apenas 28px / 14px de apagamento na BORDA.
+    // A máscara acompanha o deslocamento da seção nos dois sentidos.
     const base = mobile ? 66 : 95;
     const extra = mobile ? 40 : 65;
     const top = section.getBoundingClientRect().top;

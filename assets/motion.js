@@ -1,4 +1,4 @@
-/* LOBO v3.6 — movimento de rolagem moderado e revelação bidirecional, sem bibliotecas externas.
+/* Movimento editorial: rolagem, revelação bidirecional e profundidade, sem bibliotecas externas.
  * Desktop: roda do mouse suavizada sem interceptar trackpads nem elementos com scroll próprio.
  * Todos: entrada discreta reversível de conteúdo. Desktop: profundidade delicada nas imagens.
  * Preferência de movimento reduzido respeitada integralmente.
@@ -19,10 +19,10 @@
     '.footer__reach', '.page-hero__title', '.page-hero__aside',
     '.dark-block .statement', '.dark-block .body', '.dark-block .number-list__item',
     '.light-block .statement', '.light-block .feature-row', '.special-card',
-    '.approach-band', '.value-item', '.service-link', '.project-mosaic__tile',
-    '.project-types .number-list__item'
+    '.approach-band', '.value-item', '.service-link', '.project-mosaic__tile'
   ];
-  const revealNodes = [...new Set(document.querySelectorAll(selectors.join(',')))];
+  // querySelectorAll já elimina duplicatas entre seletores agrupados.
+  const revealNodes = document.querySelectorAll(selectors.join(','));
   let revealsQueued = false;
   const updateReveals = () => {
     revealsQueued = false;
