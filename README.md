@@ -42,3 +42,14 @@ sobrescritas por regras equivalentes foram removidas. O HTML foi indentado
 sem alterar seus textos ou atributos; os arquivos JavaScript foram organizados
 sem introduzir bibliotecas ou infraestrutura de compilação.
 
+Se for publicar a versão revisada, copie **somente o conteúdo desta pasta**
+para o repositório de hospedagem. O diretório `.git` anterior permanece
+exclusivamente no projeto original do desenvolvedor, não neste ZIP.
+
+
+## Arquitetura de navegação simplificada
+
+- **Serviços** contém três ofertas comerciais. As quatro competências (Dados e BI, Automação, IA aplicada e Ciência de Dados) ficam dentro de `servicos/projetos-de-transformacao/index.html`, com âncoras `#dados-bi`, `#automacao`, `#ia-aplicada` e `#ciencia-dados`.
+- **Sobre a Lobo** integra o Método Lobo em `sobre/index.html#metodo-lobo`.
+- Os antigos caminhos `especialidades/` e `metodo/` são redirecionamentos compatíveis com links já compartilhados e não aparecem nos menus.
+- As imagens do carrossel, o título dinâmico, os scripts de rolagem e a identidade visual foram preservados.

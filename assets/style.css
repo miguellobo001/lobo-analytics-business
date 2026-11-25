@@ -2744,3 +2744,16 @@ body {
   }
 }
 
+
+
+/* Arquitetura integrada: Método Lobo na página institucional. */
+.method-integrated { background: var(--paper); color: var(--ink); padding: clamp(65px, 7vw, 108px) 0 95px; scroll-margin-top: 20px; }
+.method-integrated__title { font-size: clamp(45px, 5.5vw, 80px); font-weight: 400; letter-spacing: -.065em; line-height: 1.06; margin: 18px 0 18px; }
+.method-integrated__lead { font-size: 18px; line-height: 1.55; color: var(--muted); max-width: 680px; margin: 0 0 45px; }
+.method-integrated .approach-band { scroll-margin-top: 18px; }
+.project-types .number-list__item { scroll-margin-top: 48px; }
+.process__more { text-align: center; margin-top: 30px; }
+@media(max-width:730px) {
+  .method-integrated { padding: 68px 0 72px; }
+  .method-integrated__lead { font-size: 16px; margin-bottom: 30px; }
+}
